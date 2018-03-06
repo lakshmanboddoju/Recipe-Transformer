@@ -1,0 +1,7 @@
+parser - visualization of our data representation
+	1. how do we recognize differences in strings (tool vs ingredient vs measurement, etc)
+	
+
+transformers
+	1. how do we transform from a->b?
+	2. 
