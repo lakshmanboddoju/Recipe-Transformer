@@ -28,14 +28,34 @@ scraped_ingredients = scrape_recipe("https://www.allrecipes.com/recipe/23735/buf
 #print scraped_ingredients
 
 def transformer(list_of_ingredients):
-    meat = 'skinless, boneless chicken breast halves'
+    meat = ['skinless, boneless chicken breast halves', 'beef', 'pork']
     alt = 'tofu blocks'
     for i in list_of_ingredients:
-        if meat in i:
-            new_ingredient = i.replace(meat, alt)
-            return new_ingredient
-        else:
-            return i
+        for m in meat:
+            if m in i:
+                #if meat in i: 
+                new_ingredient = i.replace(m, alt) #could alsos use re.sub -> regex
+                return new_ingredient
+            else:
+                return i
+            #how to delete the original ingredient
 
+def extract_quantity(list_of_ingredients):
+    quantity = []
+    measurement = []
+    for i in list_of_ingredients:
+        #temp = re.search('\d+', i) #  \( \) is how to find literal parentheses in regex
+        temp = re.search('\d+', i)
+        if temp:
+            quantity.append(temp.group(0))
+        else:
+           quantity.append(1)
+        
+    return quantity
+
+#look for all numbers in parentheses
+#look for number in ()
+
+print (extract_quantity(scraped_ingredients))
 
 print (transformer(scraped_ingredients))
