@@ -8,7 +8,9 @@ import pprint
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-
+#measurements=[teaspoon, tsp, tablespoon, tbl, tbs, tbsp, "fluid ounce", "fl oz", cup, c, 
+#	litre, litre, L, pound, lb, ounce, oz, mg, milligram, gram, g, kg, kilogram, mm, 
+#	millimeter, cm, centimeter, m, meter, inch, "in"]
 
 def scrape_ingredients(url):
     webUrl = url
@@ -18,7 +20,7 @@ def scrape_ingredients(url):
     webAll = soup.findAll("label", {"ng-class": "{true: 'checkList__item'}[true]"})
     ingredients = []
     for item in webAll:
-        print (item['title'])
+        #print (item['title'])
         ingredients.append(item['title'])
     return ingredients
     
@@ -34,6 +36,17 @@ def scrape_directions(url):
         directions.append(description.string)
     return directions
     
+def get_quantities(directs):
+	quantities =[]
+	
+	for i in directs:
+		p = re.compile(r'([0-9]+)\s?(([./0-9]+)?)')
+		#number = re.search("([0-9]+)\s?(([./0-9]+)?))", anything)
+		number = p.search(i)
+		quantities.append(number.group())
+	print (quantities)	
+	return quantities
 
-print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
-print(scrape_directions("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+#print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+#print(scrape_directions("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
