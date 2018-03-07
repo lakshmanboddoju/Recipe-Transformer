@@ -1,0 +1,215 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 alfalfa sprouts\
+aloe vera\
+artichokes\
+arugula\
+asparagus\
+asparagus peas\
+avocado\
+balsam pear\
+bitter gourd\
+bamboo shoots\
+basil\
+beet leaves\
+beets\
+bok choy\
+pak choi\
+borage\
+broccoflower\
+broccoli\
+broccoli leaves\
+broccoli raab\
+rapini\
+brussels sprouts\
+cabbage\
+Chinese cabbage\
+red cabbage\
+white cabbage\
+cactus leaves\
+canistel \
+capers\
+caraway\
+carrots\
+cassava\
+cauliflower\
+celeriac\
+celery\
+celtuce\
+chard\
+swiss chard\
+chayote\
+pipinella\
+vegetable pear\
+chervil\
+chicory\
+Chinese kale\
+kai-lan\
+chives\
+cilantro\
+collard greens\
+coriander\
+corn\
+blue corn\
+white corn\
+ yellow corn\
+cucumber\
+daikon\
+daikon radish\
+dandelion greens\
+eggplant\
+endive\
+escarole\
+ fennel\
+fenugreek\
+fiddlehead fern\
+garlic\
+ginger\
+grape leaves\
+heart of palm\
+horseradish\
+jew\'92s ear\
+pepeao\
+jicama\
+jute\
+potherb\
+kale\
+Chinese kale\
+kai-lan\
+kanpyo\
+dried gourd strips\
+kohlrabi\
+leeks\
+lettuce\
+butter crunch lettuce\
+green leaf lettuce\
+iceberg lettuce\
+red leaf lettuce\
+romaine lettuce\
+lima beans\
+mamey sapote\
+mammy apple\
+mountain yam\
+mushroom\
+abalone mushroom\
+black trumpet mushroom\
+crimini mushroom\
+enoki mushroom\
+ostrom mushroom\
+oyster mushroom\
+portabella mushroom\
+shiitake mushroom\
+straw mushroom\
+tree mushroom\
+white mushroom\
+white silver dollar mushroom\
+mustard greens\
+okra\
+olives\
+black olives\
+greek olives\
+green olives\
+spanish olives\
+onions\
+green onions\
+red onions\
+white onions\
+yellow onions\
+oyster plant\
+salsify\
+parsley\
+parsnips\
+peas\
+snap\
+snap peas\
+snow peas\
+peppers\
+chilli peppers\
+chili peppers\
+green peppers\
+jalape\'f1o peppers\
+red peppers\
+yellow peppers\
+pesto\
+pickle\
+brine pickle\
+vinegar pickle\
+pimento\
+potato\
+potatoes\
+gold potatoes\
+red potatoes\
+sweet potatoes\
+white potatoes\
+pumpkin\
+pumpkin flower\
+purslane\
+quorn\
+radicchio\
+radish sprouts\
+radishes'\
+daikon radishes\
+red radishes\
+rapini\
+rowal\
+rutabaga\
+sauerkraut\
+scallion\
+sea vegetables\
+kelp\
+kombu\
+nori', 'bladderwrack\
+Irish moss\
+spirulina\
+wakame\
+seaweed\
+shallots\
+spinach\
+sprouts\
+alfalfa sprouts\
+broccoli sprouts\
+clover sprouts\
+mung bean sprouts\
+radish sprouts\
+spicy sprouts\
+squash\
+chayote squash\
+flower squash\
+banana squash\
+butternut squash\
+danish squash\
+kabocha squash\
+spaghetti squash\
+summer squash\
+winter squash\
+yellow crookneck squash\
+skunk cabbage\
+swamp cabbage\
+sweet potato leaves\
+swiss chard\
+tamarind\
+taro leaves\
+shoots\
+tempeh\
+tofu\
+tomatillos\
+tomato\
+red roma tomato\
+red roma tomatoes\
+yellow tomato\
+tomatoes\
+turnip\
+greens\
+green turnips\
+turnips\
+water chestnut\
+matai water chestnut\
+watercress\
+wax gourd\
+Chinese preserving melon\
+yam\
+zucchini}
