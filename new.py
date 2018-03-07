@@ -14,6 +14,14 @@ import random
 #   litre, litre, L, pound, lb, ounce, oz, mg, milligram, gram, g, kg, kilogram, mm, 
 #   millimeter, cm, centimeter, m, meter, inch, "in"]
 
+def scrape_recipe_name(url):
+    webUrl = url
+    webFile = urlopen(webUrl) #edited for me
+    webHtml = webFile.read()
+    soup = BeautifulSoup(webHtml,"html.parser")
+    webAll = soup.find("h1", {"class": "recipe-summary__h1"})
+    name = webAll.string
+    return name
 
 def scrape_ingredients(url):
     webUrl = url
@@ -51,6 +59,29 @@ def get_quantities(directs):
     print (quantities)  
     return quantities
 
+def get_measurements(directs):
+    measurements = []
+
+    for i in directs:
+        print ("bababba", i)
+        p = re.compile(r'((cups)|(teaspoons)|(teaspoon)|(cup)|(tablespoons)|(tablespoon)|(cans)|(can))')
+
+        measure = p.search(i)
+        print (measure)
+        if measure:
+            measurements.append(measure.group())
+        else:
+            measurements.append('')
+    print (measurements)
+    return measurements
+
+def get_cooking_method(directs):
+    cooking_methods = []
+
+    for i in directs:
+        print ("jajaja", i)
+
+        p = re.complie(r'((bake)|(roast)|(saute)|(stir fry)|(fry)|())')
 test_ingredients = ['chicken', 'salt', 'pepper', 'tomatoes', 'peppers'] # test b/c haven't parsed actual ingredients yet
 
 def meat_transformer(list_of_ingredients): #simple meat transformer
@@ -74,13 +105,15 @@ def meat_transformer(list_of_ingredients): #simple meat transformer
                 return list_of_ingredients
 
 
-scraped_ingredients = scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub")
+#scraped_ingredients = scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub")
 
-print (meat_transformer(test_ingredients))
+#print (meat_transformer(test_ingredients))
 
-get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+#get_measurements(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 
-get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
+print(scrape_recipe_name("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+
+#get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
 
 #print (meat_transformer(scraped_ingredients))
 
