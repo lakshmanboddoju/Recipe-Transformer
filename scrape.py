@@ -8,26 +8,28 @@ import pprint
 #from urllib.request import urlopen
 import urllib
 from bs4 import BeautifulSoup
+import random
 
 #measurements=[teaspoon, tsp, tablespoon, tbl, tbs, tbsp, "fluid ounce", "fl oz", cup, c, 
 #	litre, litre, L, pound, lb, ounce, oz, mg, milligram, gram, g, kg, kilogram, mm, 
 #	millimeter, cm, centimeter, m, meter, inch, "in"]
 
+
 def scrape_ingredients(url):
     webUrl = url
-    webFile = urllib.urlopen(webUrl)
+    webFile = urllib.urlopen(webUrl) #edited for me
     webHtml = webFile.read()
     soup = BeautifulSoup(webHtml,"html.parser")
     webAll = soup.findAll("label", {"ng-class": "{true: 'checkList__item'}[true]"})
     ingredients = []
     for item in webAll:
-        print (item['title']) 
+        #print (item['title']) 
         ingredients.append(item['title'])
     return ingredients
     
 def scrape_directions(url):
     webUrl = url
-    webFile = urlopen(webUrl)
+    webFile = urllib.urlopen(webUrl) #edited for me
     webHtml = webFile.read()
     soup = BeautifulSoup(webHtml,"html.parser")
     webAll = soup.findAll("span", {"class": "recipe-directions__list--item"})
@@ -48,27 +50,38 @@ def get_quantities(directs):
 	print (quantities)	
 	return quantities
 
-def transformer(list_of_ingredients): #simple base transformer
-    meat = ['skinless, boneless chicken breast halves', 'pork', 'beef'] #substitute with meat.txt
-    alt = 'tofu blocks' #substitute with vegetarian alternatives
-    for i in list_of_ingredients:
-        for m in meat: 
-            if m in i:
-                #if meat in i
-                new_ingredient = i.replace(m, alt)
-                return new_ingredient
-            else: 
-                return i
-            #how to delete the last item in the list
-            #without print (item['title']) in scrape_ingredients, this only prints the ingredient that has been changed
+test_ingredients = ['chicken', 'salt', 'pepper', 'tomatoes', 'peppers'] # test b/c haven't parsed actual ingredients yet
+
+def meat_transformer(list_of_ingredients): #simple meat transformer
+
+	alt = ['tofu', 'tempeh', 'seitan', 'mushrooms', 'eggplant'] #need actual vegetarian options, this is just a test
+	meat_ingredient = []
+	replacement = random.choice(alt)
+
+	#turns meat.txt into list of strings of the meats
+	meat_list = []
+	meat_txt = open('meats.txt', 'r')
+	meat_line = meat_txt.readlines()
+	for m in meat_line:
+		temp = m.rstrip('\n')
+		meat_list.append(str(temp.lower()))
+
+		#replaces meat ingredient with vegetarian ingredient
+		for i in list_of_ingredients:
+			if i in meat_list:
+				list_of_ingredients[list_of_ingredients.index(i)] = replacement
+				return list_of_ingredients
+
 
 scraped_ingredients = scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub")
 
-print (transformer(scraped_ingredients))
+print (meat_transformer(test_ingredients))
 
-#get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 
-#transformer(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
+
+#print (meat_transformer(scraped_ingredients))
 
 #print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 #print(scrape_directions("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
