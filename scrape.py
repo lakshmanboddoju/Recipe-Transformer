@@ -10,10 +10,6 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import random
 
-#measurements=[teaspoon, tsp, tablespoon, tbl, tbs, tbsp, "fluid ounce", "fl oz", cup, c, 
-#   litre, litre, L, pound, lb, ounce, oz, mg, milligram, gram, g, kg, kilogram, mm, 
-#   millimeter, cm, centimeter, m, meter, inch, "in"]
-
 
 def scrape_ingredients(url):
     webUrl = url
