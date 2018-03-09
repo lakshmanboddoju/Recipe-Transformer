@@ -5,8 +5,8 @@ from nltk import ne_chunk, pos_tag, word_tokenize
 import string
 import re
 import pprint
-from urllib.request import urlopen
-#import urllib
+#from urllib.request import urlopen
+import urllib
 from bs4 import BeautifulSoup
 import random
 
@@ -16,7 +16,7 @@ import random
 
 def scrape_recipe_name(url):
     webUrl = url
-    webFile = urlopen(webUrl) #edited for me
+    webFile = urllib.urlopen(webUrl) #edited for me
     webHtml = webFile.read()
     soup = BeautifulSoup(webHtml,"html.parser")
     webAll = soup.find("h1", {"class": "recipe-summary__h1"})
@@ -25,7 +25,7 @@ def scrape_recipe_name(url):
 
 def scrape_ingredients(url):
     webUrl = url
-    webFile = urlopen(webUrl) #edited for me
+    webFile = urllib.urlopen(webUrl) #edited for me
     webHtml = webFile.read()
     soup = BeautifulSoup(webHtml,"html.parser")
     webAll = soup.findAll("label", {"ng-class": "{true: 'checkList__item'}[true]"})
@@ -37,13 +37,13 @@ def scrape_ingredients(url):
     
 def scrape_directions(url):
     webUrl = url
-    webFile = urlopen(webUrl) #edited for me
+    webFile = urllib.urlopen(webUrl) #edited for me
     webHtml = webFile.read()
     soup = BeautifulSoup(webHtml,"html.parser")
     webAll = soup.findAll("span", {"class": "recipe-directions__list--item"})
     directions = []
     for description in webAll:
-        print (description.string)
+        #print (description.string)
         directions.append(description.string)
     return directions
     
@@ -81,7 +81,29 @@ def get_cooking_method(directs):
     for i in directs:
         print ("jajaja", i)
 
-        p = re.complie(r'((bake)|(roast)|(saute)|(stir fry)|(fry)|())')
+        p = re.compile(r'((bake)|(roast)|(saute)|(stir fry)|(fry)|())')
+
+def get_cooking_tools(directs):
+	cooking_tools = []
+
+	tools_list = []
+	tools_txt = open('tools.txt', 'r')
+	tools_line = tools_txt.readlines()
+	for t in tools_line:
+		temp = t.rstrip('\n')
+		tools_list.append(str(temp.lower()))
+
+		#in this case directs is scraped directions
+		for tool in tools_list:
+			p = re.compile(tool, directs)
+			if p:
+				return p
+				print('cooking tools:', p)
+				#result = re.search(r'tool')
+			#	print("cooking tools:", tool['text'])
+			else:
+				return 0
+
 test_ingredients = ['chicken', 'salt', 'pepper', 'tomatoes', 'peppers'] # test b/c haven't parsed actual ingredients yet
 
 def meat_transformer(list_of_ingredients): #simple meat transformer
@@ -112,6 +134,9 @@ def meat_transformer(list_of_ingredients): #simple meat transformer
 #get_measurements(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 
 print(scrape_recipe_name("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+
+
+#get_cooking_tools(scrape_directions("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
 
 #get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
 
