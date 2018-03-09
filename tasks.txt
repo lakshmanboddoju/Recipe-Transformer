@@ -1,5 +1,7 @@
 parser - visualization of our data representation
-	1. how do we recognize differences in strings (tool vs ingredient vs measurement, etc)
+	1. implied tools (if directions include "cut", add "knife to list of tools"
+	2. create ingredient class
+	3. how to differentiate descriptors, preparations
 	
 
 transformers
