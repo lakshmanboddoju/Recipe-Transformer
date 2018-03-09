@@ -47,3 +47,5 @@ inches
 in
 pinch
 pinches
+cup
+cups

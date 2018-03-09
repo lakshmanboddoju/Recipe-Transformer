@@ -74,6 +74,10 @@ scraped_ingredients = scrape_ingredients("https://www.allrecipes.com/recipe/2373
 
 print (meat_transformer(test_ingredients))
 
+<<<<<<< HEAD
+#get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+=======
 get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 
 get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
@@ -81,4 +85,5 @@ get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffa
 #print (meat_transformer(scraped_ingredients))
 
 #print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+>>>>>>> d6ad21f2b38e3286d77dcb550f0bbed7fa2e114d
 #print(scrape_directions("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
