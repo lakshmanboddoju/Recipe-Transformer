@@ -55,29 +55,37 @@ def ingredient_info(url):
 		else:
 			number= "n/a"
 
-		ingredient_no_number=q.sub("", ingredient)
-
-		#print(ingredient_no_number)
-		line_tokened = nltk.word_tokenize(ingredient_no_number)
+		#ingredient_no_number=q.sub("", ingredient)
 
 
 		hasMeasurement=False
-		for token in line_tokened:
+		"""for token in line_tokened:
 
 			#get units
 			if (token.lower() in measurement_list):
 				hasMeasurement=True
 				line_tokened.remove(token)
-				measurement=token.lower()
-				#print ("Measurement: %s\n" %(token.lower()))
+				measurement=token.lower()"""
+
+		for measurement_list_item in measurement_list: 
+			if (measurement_list_item in ingredient.lower() and hasMeasurement==False):
+				hasMeasurement=True
+				measurement=measurement_list_item
+				mregex= r'(\s*)' + re.escape(measurement)  + r'(\s*)'
+				m=re.compile(mregex)
+				ingredient=m.sub('', ingredient)
 
 			#if no measurement included, say 'no measurement'
 		if (hasMeasurement==False):
 			measurement= "n/a"
 
+
+		#remove numbers
+		ingredient_no_number=q.sub("", ingredient)
+
 		#whatever is left is the ingredient name
-		line_tokened= " ".join(line_tokened)
-		print("Name: %s" %(line_tokened))
+
+		print("Name: %s" %(ingredient_no_number))
 		print ("Quantity: %s" % (number))
 		print ("Measurement: %s\n" %(measurement))
 
@@ -98,7 +106,13 @@ def get_quantities(directs):
 
 
 
-ingredient_info("https://www.allrecipes.com/recipe/235151/crispy-and-tender-baked-chicken-thighs/")
+ingredient_info("https://www.allrecipes.com/recipe/49355/gin-and-tonic/")
 getTools("https://www.allrecipes.com/recipe/8372/black-magic-cake/")
 
+#RECIPES
+"""
+https://www.allrecipes.com/recipe/49355/gin-and-tonic/
+https://www.allrecipes.com/recipe/8372/black-magic-cake/
+https://www.allrecipes.com/recipe/235151/crispy-and-tender-baked-chicken-thighs/
+"""
 	
