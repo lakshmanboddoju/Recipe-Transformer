@@ -45,6 +45,6 @@ def get_quantities(directs):
 	print (quantities)	
 	return quantities
 
-get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
-#print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+#get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 #print(scrape_directions("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
