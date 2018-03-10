@@ -43,7 +43,7 @@ def scrape_directions(url):
     webAll = soup.findAll("span", {"class": "recipe-directions__list--item"})
     directions = []
     for description in webAll:
-        print (description.string)
+        #print (description.string)
         directions.append(description.string)
     return directions
     
@@ -81,7 +81,29 @@ def get_cooking_method(directs):
     for i in directs:
         print ("jajaja", i)
 
-        p = re.complie(r'((bake)|(roast)|(saute)|(stir fry)|(fry)|())')
+        p = re.compile(r'((bake)|(roast)|(saute)|(stir fry)|(fry)|(deep fry)|(grill))')
+
+def get_cooking_tools(directs):
+	cooking_tools = []
+
+	tools_list = []
+	tools_txt = open('tools.txt', 'r')
+	tools_line = tools_txt.readlines()
+	for t in tools_line:
+		temp = t.rstrip('\n')
+		tools_list.append(str(temp.lower()))
+
+		#in this case directs is scraped directions
+		for tool in tools_list:
+			p = re.compile(tool, directs)
+			if p:
+				return p
+				print('cooking tools:', p)
+				#result = re.search(r'tool')
+			#	print("cooking tools:", tool['text'])
+			else:
+				return 0
+
 test_ingredients = ['chicken', 'salt', 'pepper', 'tomatoes', 'peppers'] # test b/c haven't parsed actual ingredients yet
 
 def meat_transformer(list_of_ingredients): #simple meat transformer
@@ -100,22 +122,27 @@ def meat_transformer(list_of_ingredients): #simple meat transformer
 
         #replaces meat ingredient with vegetarian ingredient
         for i in list_of_ingredients:
+            
             if i in meat_list:
-                list_of_ingredients[list_of_ingredients.index(i)] = replacement
-                return list_of_ingredients
+                print (i)
+                list_of_ingredients[list_of_ingredients.index(i)] = replacement                
+    return list_of_ingredients
 
 
-#scraped_ingredients = scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub")
+scraped_ingredients = scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub")
 
 #print (meat_transformer(test_ingredients))
 
 #get_measurements(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 
-print(scrape_recipe_name("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+#print(scrape_recipe_name("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+
+
+#get_cooking_tools(scrape_directions("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
 
 #get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
 
-#print (meat_transformer(scraped_ingredients))
+print (meat_transformer(scraped_ingredients))
 
 #print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 #print(scrape_directions("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))

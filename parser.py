@@ -5,7 +5,8 @@ from nltk import ne_chunk, pos_tag, word_tokenize
 import string
 import re
 import pprint
-from urllib.request import urlopen
+import urllib
+#from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pprint
 
@@ -42,7 +43,7 @@ class Ingredient:
 
 def getTools(url):
 	webUrl = url
-	webFile = urlopen(webUrl)
+	webFile = urllib.urlopen(webUrl)
 	webHtml = webFile.read()
 	soup = BeautifulSoup(webHtml,"html.parser")
 	webAll = soup.findAll("span", {"class": "recipe-directions__list--item"})
@@ -59,7 +60,7 @@ def getTools(url):
 
 def ingredient_info(url):
 	webUrl = url
-	webFile = urlopen(webUrl)
+	webFile = urllib.urlopen(webUrl)
 	webHtml = webFile.read()
 	soup = BeautifulSoup(webHtml,"html.parser")
 	ingredient_list = soup.findAll("label", {"ng-class": "{true: 'checkList__item'}[true]"})
@@ -98,7 +99,6 @@ def ingredient_info(url):
 			#if no measurement included, say 'no measurement'
 		if (hasMeasurement==False):
 			anIngredient._measurement= "n/a"
-
 
 		#remove numbers
 		ingredient_name=q.sub("", ingredientLine)
