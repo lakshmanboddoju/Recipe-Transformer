@@ -5,7 +5,8 @@ from nltk import ne_chunk, pos_tag, word_tokenize
 import string
 import re
 import pprint
-from urllib.request import urlopen
+import urllib
+#from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
 
@@ -15,7 +16,7 @@ measurement_list = open('measurements.txt').read().split('\n')
 
 def getTools(url):
 	webUrl = url
-	webFile = urlopen(webUrl)
+	webFile = urllib.urlopen(webUrl)
 	webHtml = webFile.read()
 	soup = BeautifulSoup(webHtml,"html.parser")
 	webAll = soup.findAll("span", {"class": "recipe-directions__list--item"})
@@ -33,7 +34,7 @@ def getTools(url):
 
 def ingredient_info(url):
 	webUrl = url
-	webFile = urlopen(webUrl)
+	webFile = urllib.urlopen(webUrl)
 	webHtml = webFile.read()
 	soup = BeautifulSoup(webHtml,"html.parser")
 	ingredient_list = soup.findAll("label", {"ng-class": "{true: 'checkList__item'}[true]"})
@@ -75,11 +76,33 @@ def ingredient_info(url):
 		if (hasMeasurement==False):
 			measurement= "n/a"
 
+		# preparations
+		ingredient_name = q.sub("", ingredient)
+
+		prep_tokens = nltk.word_tokenize(ingredient_name)
+		tagged = nltk.pos_tag(prep_tokens)
+		past_tense= [word for word, pos in tagged \
+			if (pos == 'VBD' or pos == 'VBN')]
+
+
+		#preparation = str(past_tense)
+
+
+		if(past_tense):
+			for x in past_tense:
+				dreg = r'(\s*)' +re.escape(x)
+				d = re.compile(dreg)
+				ingredient_name = d.sub('', ingredient_name)
+		else: 
+			past_tense = ["n/a"]
+
+
 		#whatever is left is the ingredient name
 		line_tokened= " ".join(line_tokened)
 		print("Name: %s" %(line_tokened))
 		print ("Quantity: %s" % (number))
 		print ("Measurement: %s\n" %(measurement))
+		print ("Preparation: %s\n" %(', '.join(past_tense)))
 
 
 
