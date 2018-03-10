@@ -8,10 +8,37 @@ import pprint
 import urllib
 #from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import pprint
 
 
 tool_list = open('tools.txt').read().split('\n')
 measurement_list = open('measurements.txt').read().split('\n')
+
+"""class Recipe:
+    def __init__(self):
+        self._ingredients = [] # list of Ingredients
+        self._directions = [] # list of Steps
+        self._cooking_methods = []
+        self._preparation_methods = []
+        self._tools = []
+
+    def __str__(self):
+    	for ingredient in self._ingredients:
+    		print (ingredient.__dict__)
+    		getTools()"""
+recipe_ingredients=[]
+
+class Ingredient:
+	def __init__(self):
+		self._quantity = ""
+		self._measurement = ''
+		self._name = ''
+		self._descriptor = []
+		self._preparation = ""
+
+	def __repr__(self):
+		#return self.__dict__
+		return "Name: %s\nQuantity: %s\nMeasurement: %s\nDescription: %s\nPreparation: %s\n" %(self._name, self._quantity, self._measurement, self._descriptor, self._preparation)
 
 
 def getTools(url):
@@ -27,8 +54,7 @@ def getTools(url):
 			if tool in step.text:
 				tools.append(tool)
 
-	#onlyComma = re.compile(r'[\w, ]+')	
-	#print  ("Tools: %s" %(onlyComma.search(tools).group()))
+
 	print("Tools: %s" %(tools))
 	return tools
 
@@ -40,53 +66,51 @@ def ingredient_info(url):
 	ingredient_list = soup.findAll("label", {"ng-class": "{true: 'checkList__item'}[true]"})
 	p=re.compile(r'([0-9]+)\s?(([./0-9]+)?)')
 	q=re.compile(r'[0-9/]')
+	
 
 	for line in ingredient_list:
-		ingredient = line['title']
-		#line_tokened = nltk.word_tokenize(ingredient)
-
-		name=""
+		ingredientLine = line['title']
+		
+		ingredient_name=""
 		quantity=""
 		measurement=""
+		
+		anIngredient = Ingredient()
+
 
 		#quantity
-		number=p.search(ingredient)
+		number=p.search(ingredientLine)
 		if (number):
-			number=number.group()
+			anIngredient._quantity=number.group()
 		else:
-			number= "n/a"
+			anIngredient._quantity= "n/a"
 
-		ingredient_no_number=q.sub("", ingredient)
-
-		#print(ingredient_no_number)
-		line_tokened = nltk.word_tokenize(ingredient_no_number)
-
-
+		#get measurement unit
 		hasMeasurement=False
-		for token in line_tokened:
-
-			#get units
-			if (token.lower() in measurement_list):
+		for measurement_list_item in measurement_list: 
+			if (measurement_list_item in ingredientLine.lower() and hasMeasurement==False):
 				hasMeasurement=True
-				line_tokened.remove(token)
-				measurement=token.lower()
-				#print ("Measurement: %s\n" %(token.lower()))
+				measurement=measurement_list_item
+				mregex= r'(\s*)' + re.escape(measurement)  + r'(\s*)'
+				m=re.compile(mregex)
+				ingredientLine=m.sub('', ingredientLine)
+				anIngredient._measurement=measurement
 
 			#if no measurement included, say 'no measurement'
 		if (hasMeasurement==False):
-			measurement= "n/a"
+			anIngredient._measurement= "n/a"
 
-		# preparations
-		ingredient_name = q.sub("", ingredient)
+		#remove numbers
+		ingredient_name=q.sub("", ingredientLine)
 
-		prep_tokens = nltk.word_tokenize(ingredient_name)
-		tagged = nltk.pos_tag(prep_tokens)
-		past_tense= [word for word, pos in tagged \
-			if (pos == 'VBD' or pos == 'VBN')]
+		#find descriptors
+		ingredients_tokened = nltk.word_tokenize(ingredient_name)
+		tagged_ingredients = nltk.pos_tag(ingredients_tokened)
+		descriptors=[word for word, pos in tagged_ingredients \
+			if (pos=='JJ' or pos=='JJR' or pos=='JJS' or pos=='RB' or pos=='VBG' or pos=='VB')]
 
-
-		#preparation = str(past_tense)
-
+		past_tense=[word for word, pos in tagged_ingredients \
+			if (pos == 'VBD' or pos =='VBN')]
 
 		if(past_tense):
 			for x in past_tense:
@@ -96,16 +120,31 @@ def ingredient_info(url):
 		else: 
 			past_tense = ["n/a"]
 
+		#remove descriptors from ingredients, leaving just the name
+
+		if(descriptors):
+			for x in descriptors:
+				dregex=r'(\s*)' + re.escape(x) 
+				d=re.compile(dregex)
+				ingredient_name=d.sub('',ingredient_name)
+		else:
+			descriptors=["n/a"]
+
+		anIngredient._descriptor=', '.join(descriptors)
+		anIngredient._preparation=', '.join(past_tense)
+		anIngredient._name=ingredient_name
+
+		recipe_ingredients.append(anIngredient)
+				
 
 		#whatever is left is the ingredient name
-		line_tokened= " ".join(line_tokened)
-		print("Name: %s" %(line_tokened))
+		"""print("Name: %s" %(ingredient_name))
 		print ("Quantity: %s" % (number))
-		print ("Measurement: %s\n" %(measurement))
-		print ("Preparation: %s\n" %(', '.join(past_tense)))
-
-
-
+		print ("Measurement: %s" %(measurement))
+		print ("Descriptor: %s" %(', '.join(descriptors)))
+		print("Preparation: %s\n" %(', '.join(past_tense)))"""
+	pp=pprint.PrettyPrinter(indent=4)
+	pp.pprint  (recipe_ingredients)
 	return 0
 
 def get_quantities(directs):
@@ -121,7 +160,13 @@ def get_quantities(directs):
 
 
 
-ingredient_info("https://www.allrecipes.com/recipe/235151/crispy-and-tender-baked-chicken-thighs/")
+ingredient_info("https://www.allrecipes.com/recipe/235151/crispy-and-tender-baked-chicken-thighs")
 getTools("https://www.allrecipes.com/recipe/8372/black-magic-cake/")
 
+#RECIPES
+"""
+https://www.allrecipes.com/recipe/49355/gin-and-tonic/
+https://www.allrecipes.com/recipe/8372/black-magic-cake/
+https://www.allrecipes.com/recipe/235151/crispy-and-tender-baked-chicken-thighs/
+"""
 	
