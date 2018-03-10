@@ -5,8 +5,8 @@ from nltk import ne_chunk, pos_tag, word_tokenize
 import string
 import re
 import pprint
-#from urllib.request import urlopen
-import urllib
+from urllib.request import urlopen
+#import urllib
 from bs4 import BeautifulSoup
 import random
 
@@ -16,7 +16,7 @@ import random
 
 def scrape_recipe_name(url):
     webUrl = url
-    webFile = urllib.urlopen(webUrl) #edited for me
+    webFile = urlopen(webUrl) #edited for me
     webHtml = webFile.read()
     soup = BeautifulSoup(webHtml,"html.parser")
     webAll = soup.find("h1", {"class": "recipe-summary__h1"})
@@ -25,7 +25,7 @@ def scrape_recipe_name(url):
 
 def scrape_ingredients(url):
     webUrl = url
-    webFile = urllib.urlopen(webUrl) #edited for me
+    webFile = urlopen(webUrl) #edited for me
     webHtml = webFile.read()
     soup = BeautifulSoup(webHtml,"html.parser")
     webAll = soup.findAll("label", {"ng-class": "{true: 'checkList__item'}[true]"})
@@ -37,7 +37,7 @@ def scrape_ingredients(url):
     
 def scrape_directions(url):
     webUrl = url
-    webFile = urllib.urlopen(webUrl) #edited for me
+    webFile = urlopen(webUrl) #edited for me
     webHtml = webFile.read()
     soup = BeautifulSoup(webHtml,"html.parser")
     webAll = soup.findAll("span", {"class": "recipe-directions__list--item"})
@@ -81,7 +81,7 @@ def get_cooking_method(directs):
     for i in directs:
         print ("jajaja", i)
 
-        p = re.compile(r'((bake)|(roast)|(saute)|(stir fry)|(fry)|())')
+        p = re.compile(r'((bake)|(roast)|(saute)|(stir fry)|(fry)|(deep fry)|(grill))')
 
 def get_cooking_tools(directs):
 	cooking_tools = []
@@ -122,25 +122,27 @@ def meat_transformer(list_of_ingredients): #simple meat transformer
 
         #replaces meat ingredient with vegetarian ingredient
         for i in list_of_ingredients:
+            
             if i in meat_list:
-                list_of_ingredients[list_of_ingredients.index(i)] = replacement
-                return list_of_ingredients
+                print (i)
+                list_of_ingredients[list_of_ingredients.index(i)] = replacement                
+    return list_of_ingredients
 
 
-#scraped_ingredients = scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub")
+scraped_ingredients = scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub")
 
 #print (meat_transformer(test_ingredients))
 
 #get_measurements(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 
-print(scrape_recipe_name("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
+#print(scrape_recipe_name("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 
 
 #get_cooking_tools(scrape_directions("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
 
 #get_quantities(scrape_ingredients("https://www.allrecipes.com/recipe/23735/buffalo-style-chicken-pizza/?internalSource=rotd&referringId=1036&referringContentType=recipe%20hub"))
 
-#print (meat_transformer(scraped_ingredients))
+print (meat_transformer(scraped_ingredients))
 
 #print(scrape_ingredients("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 #print(scrape_directions("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
