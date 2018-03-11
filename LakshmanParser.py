@@ -5,27 +5,13 @@ from nltk import ne_chunk, pos_tag, word_tokenize
 import string
 import re
 import pprint
-import urllib
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import pprint
 
 
 tool_list = open('tools.txt').read().split('\n')
 measurement_list = open('measurements.txt').read().split('\n')
 
-"""class Recipe:
-    def __init__(self):
-        self._ingredients = [] # list of Ingredients
-        self._directions = [] # list of Steps
-        self._cooking_methods = []
-        self._preparation_methods = []
-        self._tools = []
-
-    def __str__(self):
-    	for ingredient in self._ingredients:
-    		print (ingredient.__dict__)
-    		getTools()"""
 recipe_ingredients=[]
 
 class Ingredient:
@@ -136,17 +122,10 @@ def ingredient_info(url):
 		anIngredient._name=ingredient_name
 
 		recipe_ingredients.append(anIngredient)
-				
 
-		#whatever is left is the ingredient name
-		"""print("Name: %s" %(ingredient_name))
-		print ("Quantity: %s" % (number))
-		print ("Measurement: %s" %(measurement))
-		print ("Descriptor: %s" %(', '.join(descriptors)))
-		print("Preparation: %s\n" %(', '.join(past_tense)))"""
-	pp=pprint.PrettyPrinter(indent=4)
-	pp.pprint  (recipe_ingredients)
-	return 0
+	#pp=pprint.PrettyPrinter(indent=4)
+	#pp.pprint  (recipe_ingredients)
+	return recipe_ingredients
 
 def get_quantities(directs):
 	quantities =[]
@@ -160,8 +139,8 @@ def get_quantities(directs):
 	return quantities
 
 
-
-ingredient_info("https://www.allrecipes.com/recipe/235151/crispy-and-tender-baked-chicken-thighs")
+#pp=pprint.PrettyPrinter(indent=4)
+#pp.pprint(ingredient_info("https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/"))
 #getTools("https://www.allrecipes.com/recipe/8372/black-magic-cake/")
 
 #RECIPES
