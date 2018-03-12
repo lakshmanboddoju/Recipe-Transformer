@@ -51,4 +51,4 @@ def make_indian(ingredients):
 	replaced = []
 	
 
-print(make_vegetarian(danparser.ingredient_info("https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/")))
+print(make_vegetarian(LakshmanParser.ingredient_info("https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/")))
