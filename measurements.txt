@@ -1,51 +1,51 @@
+teaspoons
 teaspoon
-teaspons
 tsp
-tablespoon
 tablespoons
+tablespoon
 tbl
 tbs
 tbsp
-fluid ounce
 fluid ounces
+fluid ounce
 fl oz
-cup
 cups
-c
-liter
+cup
+ c 
 liters
-litre
+liter
 litres
-L
-pound
+litre
+ L 
 pounds
-lb
+pound
 lbs
-ounce
+lb
 ounces
+ounce
 oz
 mg
-milligram
 milligrams
-gram
+milligram
 grams
-g
+gram
+ g 
 kg
-kilogram
 kilograms
+kilogram
 mm
-millimeter
 millimeters
+millimeter
 cm
-centimeter
 centimeters
-m
-meter
+centimeter
+ m 
 meters
-inch
+meter
 inches
-in
-pinch
+inch
+ in 
 pinches
-cup
+pinch
 cups
+cup
