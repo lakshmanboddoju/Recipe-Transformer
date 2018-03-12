@@ -49,3 +49,5 @@ pinches
 pinch
 cups
 cup
+halves
+half
