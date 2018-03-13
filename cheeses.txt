@@ -6,7 +6,6 @@ Aura
 Baramily
 Bergenost
 Blue cheese
-Blue Cheese, Maytag
 Maytag Blue Cheese
 Borough Market Stilton
 Brick Cheese
@@ -26,7 +25,6 @@ Cholera Cheese
 Colby Cheese
 Colby-Jack Cheese
 Cordobes
-Cottage Cheese, Full Fat
 Cotija
 Cottage Cheese
 Full Fat Cottage Cheese
@@ -55,7 +53,6 @@ Gouda Cheese
 Government Cheese
 Gran Queso
 Gruyere Cheese
-Half & Half
 Halumi
 Havarti
 Havarti Cheese
@@ -63,7 +60,6 @@ Herve Cheese
 Herve Mons Pave De Nord
 Herve Mons Tomme Des Bois Noir
 Istanboly
-Jack, Monterey
 Jarlsberg Cheese
 Kefalotyri Cheese
 Kefir
@@ -73,7 +69,6 @@ Liederkranz Cheese
 Limburger Cheese
 Manchego
 Manchego 1 year
-Manchego 8 mo. raw milk
 Manchego Cheese
 Mascarpone Cheese
 Mimolette
@@ -89,8 +84,6 @@ Neufchatel cheese
 Paneer Cheese
 Parmesan Cheese
 Parmesan
-Parmigiano-Reggiano
-Parmigiano-Reggiano Cheese
 Pastore Sini
 Pecorino Cheese
 Pepper jack
@@ -121,10 +114,17 @@ Taleggio
 Taleggio Cheese
 Teleme Cheese
 Tete de Moine
-Ubriaco Del Plave PO-SI
 Uniekaas Reserve
 Uniekaas Robusto
 Velveeta
 Whey Protein Powder
 White Cheeses
 Yellow Cheeses
+Half & Half
+Cottage Cheese, Full Fat
+Blue Cheese, Maytag
+Ubriaco Del Plave PO-SI
+Parmigiano-Reggiano
+Parmigiano-Reggiano Cheese
+Manchego 8 mo. raw milk
+Jack, Monterey

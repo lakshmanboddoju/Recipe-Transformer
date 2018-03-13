@@ -11,14 +11,16 @@ from bs4 import BeautifulSoup
 import random
 from italiansubstitutes import *
 from amer_cheese import *
-from spices import *
 import danparser
 
+
 def transform_to_Italian(ingredients): #need to get it to only print the ingredients once with the substitutes
-									# also only changes the meat, but should be chaning cheese and spice as well
+									# also only changes the meat, but should be chaning cheese and spice as well			
 	replace_spice = []
 	replace_meat= []
 	replace_cheese =[]
+	#italian_spices = ['basil', 'oregano']
+	#replacement_spice = random.choice(italian_spices)
 
 	meats = []
 	meat_text = open("meats.txt", "r")
@@ -27,34 +29,40 @@ def transform_to_Italian(ingredients): #need to get it to only print the ingredi
 		temp = m.rstrip('\n')
 		meats.append(str(temp.lower()))
 
-	cheeses = []
-	cheese_text = open("cheeses.txt", "r")
-	cheese_lines = cheese_text.readlines()
-	for c in cheese_lines:
-		temp = c.rstrip('\n')
-		cheeses.append(str(temp.lower()))
+	# cheeses = []
+	# cheese_text = open("cheeses.txt", "r")
+	# cheese_lines = cheese_text.readlines()
+	# for c in cheese_lines:
+	# 	temp = c.rstrip('\n')
+	# 	cheeses.append(str(temp.lower()))
 
+	spices = []
+	spice_text = open("spices.txt", "r")
+	spice_lines = spice_text.readlines()
+	for s in spice_lines:
+		temp = s.rstrip('\n')
+		spices.append(str(temp.lower()))
 
-	for ingredient in ingredients:
+	for ingredient in ingredients: #returns ingredient info with and without changes
 		for m in meats:
 			if m in ingredient._name:
-				print (ingredient._name)
+				#print (ingredient._name)
 				if ingredient._name not in replace_meat:
 					ingredient._name = 'Italian sausage'
 					ingredient._descriptor = 'Italian'
 					replace_meat.append(ingredient._name)
 
-		for c in cheeses: #having issues with ascii 
-			if c in ingredient._name:
-				#print (ingredient._name)
-				if ingredient._name not in replace_cheese:
-					ingredient._name = 'mozzarella cheese'
-					ingredient._descriptor = 'n/a'
-					replace_cheese.append(ingredient._name)	
+		# for c in cheeses: #having issues with ascii 
+		# 	if c in ingredient._name:
+		# 		#print (ingredient._name)
+		# 		if ingredient._name not in replace_cheese:
+		# 			ingredient._name = 'mozzarella cheese'
+		# 			ingredient._descriptor = 'n/a'
+		# 			replace_cheese.append(ingredient._name)	
 
 		for s in spices:
 			if s in ingredient._name:
-
+				#print ingredient._name
 				if ingredient._name not in replace_spice:
 					ingredient._name = 'basil'
 					ingredient._descriptor = 'leaves'
@@ -72,6 +80,13 @@ def transform_to_American(ingredients):
 		temp = c.rstrip('\n')
 		cheeses.append(str(temp.lower()))	
 
+	spices = []
+	spice_text = open("spices.txt", "r")
+	spice_lines = spice_text.readlines()
+	for s in spice_lines:
+		temp = s.rstrip('\n')
+		spices.append(str(temp.lower()))
+
 	replace_cheese = []
 	replace_spice = []
 
@@ -82,15 +97,15 @@ def transform_to_American(ingredients):
 				ingredient._descriptor = 'black'
 				replace_spice.append(ingredient._name)
 
-		for c in ingredient._name: #having issues with ascii 
-			if ingredient._name not in replace_cheese:
-				ingredient._name = 'American cheese'
-				ingredient._descriptor = 'n/a'
-				replace_cheese.append(ingredient._name)
+		# for c in ingredient._name: #having issues with ascii 
+		# 	if ingredient._name not in replace_cheese:
+		# 		ingredient._name = 'American cheese'
+		# 		ingredient._descriptor = 'n/a'
+		# 		replace_cheese.append(ingredient._name)
 
-		return ingredients
+		# return ingredients
 
 
 
-#print (transform_to_Italian(danparser.ingredient_info('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))
+print (transform_to_Italian(danparser.ingredient_info('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))
 
