@@ -38,10 +38,9 @@ def make_healthy(ingredients):
 
 #print(make_healthy(LakshmanParser.ingredient_info("https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/")))
 
-meat_to_veg_dict={"beef broth":"vegitable broth", "chicken broth":"vegitable broth", "beef stock": "vegitable stock", "chicken stock":"vegitable stock", 
-                  "chicken":"tofu","steak":"portabello mushrooms", "chorizo":"tofu", "hot dog": "soy dog", "hamburger":"Veggie Burger", 
-                  "turkey":"soy", "veal":"tofu","beef":"soy", 
-                  "pork":"portabello mushrooms", "salmon":"tofu", "chicken wings":"tofu"}
+meat_to_veg_dict={"hamburger":"Veggie Burger", "beef broth":"vegetable broth", "chicken broth":"vegetable broth", "beef stock": "vegetable stock", "chicken stock":"vegetable stock", 
+                  "chicken wings":"tofu", "chicken":"tofu","steak":"portabello mushrooms", "chorizo":"tofu", "hot dog": "soy dog", "turkey":"soy", "veal":"tofu","beef":"soy", 
+                  "pork":"portabello mushrooms", "salmon":"tofu", "ham": "tofu", "pig": "tofu"}
 
 meat_to_veg_directions_dict = {"beef": "soy", "chicken": "tofu", "steak": "portabello mushrooms", "turkey": "soy", "veal": "tofu", "chorizo": "tofu", "salmon": "tofu", 
                                "pork": "tofu", "pig": "tofu", "ham": "tofu"}
