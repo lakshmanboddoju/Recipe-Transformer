@@ -8,7 +8,7 @@ import pprint
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import random
-import LakshmanParser
+import danparser
 from fractions import Fraction
 
 unhealthy_list = ['ghee', 'oil', 'butter', 'salt', 'sugar', 'fat']
@@ -48,56 +48,56 @@ def make_vegetarian(ingredients):
 	return ingredients
 
 indian_list = []
-indian_ing_1 = LakshmanParser.Ingredient()
+indian_ing_1 = danparser.Ingredient()
 indian_ing_1._name = 'garlic'
 indian_ing_1._preperation = 'paste'
 indian_ing_1._quantity = ''
 indian_ing_1._descriptor = ["n/a"]
 indian_list.append(indian_ing_1)
 
-indian_ing_2 = LakshmanParser.Ingredient()
+indian_ing_2 = danparser.Ingredient()
 indian_ing_2._name = 'ginger'
 indian_ing_2._preperation = 'paste'
 indian_ing_2._quantity = ''
 indian_ing_2._descriptor = ["n/a"]
 indian_list.append(indian_ing_2)
 
-indian_ing_3 = LakshmanParser.Ingredient()
+indian_ing_3 = danparser.Ingredient()
 indian_ing_3._name = 'curry powder'
 indian_ing_3._preperation = 'n/a'
 indian_ing_3._quantity = ''
 indian_ing_3._descriptor = ["n/a"]
 indian_list.append(indian_ing_3)
 
-indian_ing_4 = LakshmanParser.Ingredient()
+indian_ing_4 = danparser.Ingredient()
 indian_ing_4._name = 'garam masala'
 indian_ing_4._preperation = 'n/a'
 indian_ing_4._quantity = ''
 indian_ing_4._descriptor = ["n/a"]
 indian_list.append(indian_ing_4)
 
-indian_ing_5 = LakshmanParser.Ingredient()
+indian_ing_5 = danparser.Ingredient()
 indian_ing_5._name = 'cumin'
 indian_ing_5._preperation = 'n/a'
 indian_ing_5._quantity = ''
 indian_ing_5._descriptor = ["n/a"]
 indian_list.append(indian_ing_5)
 
-indian_ing_6 = LakshmanParser.Ingredient()
+indian_ing_6 = danparser.Ingredient()
 indian_ing_6._name = 'coriander'
 indian_ing_6._preperation = 'leaves'
 indian_ing_6._quantity = ''
 indian_ing_6._descriptor = ["n/a"]
 indian_list.append(indian_ing_6)
 
-indian_ing_7 = LakshmanParser.Ingredient()
+indian_ing_7 = danparser.Ingredient()
 indian_ing_7._name = 'mustard seeds'
 indian_ing_7._preperation = 'n/a'
 indian_ing_7._quantity = ''
 indian_ing_7._descriptor = ["black"]
 indian_list.append(indian_ing_7)
 
-indian_ing_8 = LakshmanParser.Ingredient()
+indian_ing_8 = danparser.Ingredient()
 indian_ing_8._name = 'chilli pepper'
 indian_ing_8._preperation = 'n/a'
 indian_ing_8._quantity = ''
@@ -106,7 +106,7 @@ indian_list.append(indian_ing_8)
 
 #print (indian_list)
 
-main_ingredient_list = ['chicken', 'turkey', 'beef', 'fish', 'tuna', 'paneer', 'tofu', 'mushroom', 'sausage', 'pork', 'samon', 'pig', '']
+main_ingredient_list = ['chicken', 'turkey', 'beef', 'fish', 'tuna', 'paneer', 'tofu', 'mushroom', 'sausage', 'pork', 'samon', 'pig', 'tofu', '']
 
 italian_list_names = ['basil', 'mozzarella', 'wine', 'ricotta', 'olive', 'parmesan', 'caper', 'balsamic', 'oregano', 'italian']
 
@@ -121,7 +121,7 @@ def make_indian(ingredients):
 
 	return ingredients
 
-print(make_indian(LakshmanParser.ingredient_info("https://www.allrecipes.com/recipe/14592/italian-style-meatloaf-i/")))
+print(make_indian(danparser.ingredient_info("https://www.allrecipes.com/recipe/14592/italian-style-meatloaf-i/")))
 
 
 	

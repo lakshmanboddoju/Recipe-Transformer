@@ -5,7 +5,6 @@ from nltk import ne_chunk, pos_tag, word_tokenize
 import string
 import re
 import pprint
-#import urllib
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pprint
@@ -48,7 +47,7 @@ def getTools(url):
 		count+=1
 		finalString +=  "%d. %s " %(count, x)
 	
-	print("Tools: %s" %(finalString))
+	#print("Tools: %s" %(finalString))
 	return tools
 
 	if(number):
@@ -204,8 +203,8 @@ def ingredient_info(url):
 		recipe_ingredients.append(anIngredient)
 			
 
-	pp=pprint.PrettyPrinter(indent=4)
-	pp.pprint  (recipe_ingredients)
+	'''pp=pprint.PrettyPrinter(indent=4)
+	pp.pprint  (recipe_ingredients)'''
 	getTools(url)
 	return recipe_ingredients
 
@@ -216,12 +215,12 @@ def get_quantities(directs):
 		p = re.compile(r'([0-9]+)\s?(([./0-9]+)?)')
 		number = p.search(i)
 		quantities.append(number.group())
-	print (quantities)	
+	#print (quantities)	
 	return quantities
 
 
 
-ingredient_info("https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/")
+#ingredient_info("https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/")
 #getTools("https://www.allrecipes.com/recipe/8372/black-magic-cake/")
 
 #RECIPES
