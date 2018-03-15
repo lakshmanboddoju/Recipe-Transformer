@@ -24,9 +24,19 @@ class Ingredient:
 		self._descriptor = []
 		self._preparation = ""
 
+	# def __getitem__ (self, item):
+	# 	return (self._quantity, self._measurement, self._name, self._descriptor, self._preparation)[item]
+	def addIngredient(self, i):
+		self._quantity.append(i)
+		self._measurement.append(i)
+		self._name.append(i)
+		self._descriptor.append(i)
+		self._preparation.append(i)
+
 	def __repr__(self):
 		#return self.__dict__
 		return "Name: %s\nQuantity: %s\nMeasurement: %s\nDescription: %s\nPreparation: %s\n\n" %(self._name, self._quantity, self._measurement, self._descriptor, self._preparation)
+
 
 
 def getTools(url):
@@ -204,8 +214,8 @@ def ingredient_info(url):
 		recipe_ingredients.append(anIngredient)
 			
 
-	pp=pprint.PrettyPrinter(indent=4)
-	pp.pprint  (recipe_ingredients)
+	#pp=pprint.PrettyPrinter(indent=4)
+	#pp.pprint  (recipe_ingredients)
 	getTools(url)
 	return recipe_ingredients
 
@@ -221,7 +231,7 @@ def get_quantities(directs):
 
 
 
-ingredient_info("https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/")
+#ingredient_info("https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/")
 #getTools("https://www.allrecipes.com/recipe/8372/black-magic-cake/")
 
 #RECIPES
