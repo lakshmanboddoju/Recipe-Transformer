@@ -9,18 +9,20 @@ import pprint
 import urllib
 from bs4 import BeautifulSoup
 import random
-from italiansubstitutes import *
-from amer_cheese import *
 import danparser
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 def transform_to_Italian(ingredients): #need to get it to only print the ingredients once with the substitutes
-									# also only changes the meat, but should be chaning cheese and spice as well			
-	replace_spice = []
-	replace_meat= []
-	replace_cheese =[]
-	#italian_spices = ['basil', 'oregano']
-	#replacement_spice = random.choice(italian_spices)
+								
+	non_italian_spices = ['cayenne pepper', 'fennel', 'cilantro', 'saffron', 'turmeric', 'ghee', 'garlic', 'ginger', 'curry powder', 'garam masala', 'cumin', 'masala', 'coriander', 'cilantro', 'mustard seeds', 'chilli pepper','garlic', 'ginger', 'curry powder', 'garam masala', 'cumin', 'masala', 'coriander', 'cilantro', 'mustard seeds', 'chilli pepper']
+
+	replacement = []
+	basil = 'basil'
+	oregano = 'oregano'
+	parmesan = 'parmesan cheese'
 
 	meats = []
 	meat_text = open("meats.txt", "r")
@@ -29,50 +31,84 @@ def transform_to_Italian(ingredients): #need to get it to only print the ingredi
 		temp = m.rstrip('\n')
 		meats.append(str(temp.lower()))
 
-	# cheeses = []
-	# cheese_text = open("cheeses.txt", "r")
-	# cheese_lines = cheese_text.readlines()
-	# for c in cheese_lines:
-	# 	temp = c.rstrip('\n')
-	# 	cheeses.append(str(temp.lower()))
+	cheeses = []
+	cheese_text = open("cheeses.txt", "r")
+	cheese_lines = cheese_text.readlines()
+	for c in cheese_lines:
+		temp = c.rstrip('\n')
+		cheeses.append(str(temp.lower()))
 
-	spices = []
-	spice_text = open("spices.txt", "r")
-	spice_lines = spice_text.readlines()
-	for s in spice_lines:
-		temp = s.rstrip('\n')
-		spices.append(str(temp.lower()))
+	removed_spices = []
+	for ingredient in ingredients:
+		for spice in non_italian_spices:
+			if spice in ingredient._name and spice not in removed_spices:
+				removed_spices.append(spice)
+				ingredients.remove(ingredient)
+
 
 	for ingredient in ingredients: #returns ingredient info with and without changes
 		for m in meats:
 			if m in ingredient._name:
 				#print (ingredient._name)
-				if ingredient._name not in replace_meat:
+				if ingredient._name not in replacement:
 					ingredient._name = 'Italian sausage'
 					ingredient._descriptor = 'Italian'
-					replace_meat.append(ingredient._name)
+					replacement.append(ingredient._name)
 
-		# for c in cheeses: #having issues with ascii 
-		# 	if c in ingredient._name:
-		# 		#print (ingredient._name)
-		# 		if ingredient._name not in replace_cheese:
-		# 			ingredient._name = 'mozzarella cheese'
-		# 			ingredient._descriptor = 'n/a'
-		# 			replace_cheese.append(ingredient._name)	
+		for c in cheeses: #having issues with ascii 
+			if c in ingredient._name:
+				#print (ingredient._name)
+				if ingredient._name not in replacement:
+					ingredient._name = 'mozzarella cheese'
+					ingredient._descriptor = 'n/a'
+					replacement.append(ingredient._name)	
 
-		for s in spices:
-			if s in ingredient._name:
-				#print ingredient._name
-				if ingredient._name not in replace_spice:
-					ingredient._name = 'basil'
-					ingredient._descriptor = 'leaves'
-					replace_spice.append(ingredient._name)
+	for ingredient in ingredients:
+		if basil not in ingredient._name:
+			new_ingredient = danparser.Ingredient()
+			new_ingredient._name = 'basil'
+			new_ingredient._quantity = '1'
+			new_ingredient._measurement = 'teaspoon'
+			new_ingredient._preparation = 'n/a'
+			new_ingredient._descriptor = 'dried'
+			ingredients.append(new_ingredient)
+
+
+		if oregano not in ingredient._name:
+			new_ingredient = danparser.Ingredient()
+			new_ingredient._name = 'oregano'
+			new_ingredient._quantity = '1'
+			new_ingredient._measurement = 'teaspoon'
+			new_ingredient._preparation = 'n/a'
+			new_ingredient._descriptor = 'dried'
+			ingredients.append(new_ingredient)
+
+		if parmesan not in ingredient._name:
+			new_ingredient = danparser.Ingredient()
+			new_ingredient._name = 'parmesan cheese'
+			new_ingredient._quantity = '2'
+			new_ingredient._measurement = 'tablespoon'
+			new_ingredient._preparation = 'n/a'
+			new_ingredient._descriptor = 'n/a'
+			ingredients.append(new_ingredient)		
+
+
+	# for ingredient in ingredients:
+	# 	for spice in non_italian_spices:
+	# 		if spice._name in ingredient:
+	# 			ingredient.remove(spice)			
+
+		return ingredients
+
+
 
 
 	return ingredients
 
 def transform_to_American(ingredients):
 	
+	non_american_spices = ['cayenne pepper', 'fennel', 'cilantro', 'saffron', 'turmeric', 'ghee', 'garlic', 'ginger', 'curry powder', 'garam masala', 'cumin', 'masala', 'coriander', 'cilantro', 'mustard seeds', 'chilli pepper','garlic', 'ginger', 'curry powder', 'garam masala', 'cumin', 'masala', 'coriander', 'cilantro', 'mustard seeds', 'chilli pepper']
+
 	cheeses = []
 	cheese_text = open("cheeses.txt", "r")
 	cheese_lines = cheese_text.readlines()
@@ -80,32 +116,58 @@ def transform_to_American(ingredients):
 		temp = c.rstrip('\n')
 		cheeses.append(str(temp.lower()))	
 
-	spices = []
-	spice_text = open("spices.txt", "r")
-	spice_lines = spice_text.readlines()
-	for s in spice_lines:
-		temp = s.rstrip('\n')
-		spices.append(str(temp.lower()))
-
 	replace_cheese = []
 	replace_spice = []
+	b = 'black pepper'
+
+	removed_spices = []
+	for ingredient in ingredients:
+		for spice in non_american_spices:
+			if spice in ingredient._name and spice not in removed_spices:
+				removed_spices.append(spice)
+				ingredients.remove(ingredient)
 
 	for ingredient in ingredients:
-		for s in ingredient._name:
-			if ingredient._name not in replace_spice:
-				ingredient._name = 'black pepper'
-				ingredient._descriptor = 'black'
-				replace_spice.append(ingredient._name)
+		for c in cheeses:
+			if c in ingredient._name: #having issues with ascii 
+				if ingredient._name not in replace_cheese:
+					ingredient._name = 'American cheese'
+					ingredient._descriptor = 'n/a'
+					replace_cheese.append(ingredient._name)
 
-		# for c in ingredient._name: #having issues with ascii 
-		# 	if ingredient._name not in replace_cheese:
-		# 		ingredient._name = 'American cheese'
-		# 		ingredient._descriptor = 'n/a'
-		# 		replace_cheese.append(ingredient._name)
+	for ingredient in ingredients:
+		if b not in ingredient._name:
+			new_ingredient = danparser.Ingredient()
+			new_ingredient._name = 'black pepper'
+			new_ingredient._quantity = '1'
+			new_ingredient._measurement = 'teaspoon'
+			new_ingredient._preparation = 'n/a'
+			new_ingredient._descriptor = 'black'
+			ingredients.append(new_ingredient)
 
-		# return ingredients
+		return ingredients
 
 
+transformation = input("What transformation would you like to perform? The options given are 'healthy', 'Indian', 'Italian', 'American' and 'vegetarian'.")
 
-print (transform_to_Italian(danparser.ingredient_info('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))
+#url = input("Type in url from allrecipes.com.")
+url ="https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/"
+if transformation == 'healthy':
+	print(make_healthy(danparser.ingredient_info(url)))
 
+if transformation == 'Indian':
+	print(make_vegetarian(danparser.ingredient_info(url)))
+
+if transformation == '1':
+	print ("hahah")
+	print(transform_to_Italian(danparser.ingredient_info(url)))
+
+if transformation == 'American':
+	print(transform_to_American(danparser.ingredient_info(url)))
+
+#print(transform_to_American(danparser.ingredient_info('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))
+
+#print(transform_to_Italian(danparser.ingredient_info('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))
+##
+
+#print(transform_to_Italian(danparser.ingredient_info('https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/')))
