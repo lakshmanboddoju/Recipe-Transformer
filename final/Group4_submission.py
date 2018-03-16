@@ -167,11 +167,21 @@ transformation = input("What transformation would you like to perform? The optio
 
 url = input("Type in url from allrecipes.com.")
 #url ="https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/"
+
+print ("Original Recipe:\n\n", danparser.ingredient_info(url))
+
+print ("\nTools Used: \n", danparser.getTools(url))
+print ("\nTransformed Recipe:\n\n")
 if transformation == '1': #healthy
 	print(Lakshman_Wednesday.make_healthy(danparser.ingredient_info(url)))
 
 if transformation == '2': #vegetarian
-	print(Lakshman_Wednesday.make_vegetarian(danparser.ingredient_info(url), Lakshman_Wednesday.scrape_directions(url)))
+	print("Transformed Ingredients: \n", Lakshman_Wednesday.make_vegetarian(danparser.ingredient_info(url), Lakshman_Wednesday.scrape_directions(url))[0])
+	temp_transformed_directs = Lakshman_Wednesday.make_vegetarian(danparser.ingredient_info(url), Lakshman_Wednesday.scrape_directions(url))[1]
+	print("\nTransformed Directions: \n")
+	for one_step in temp_transformed_directs:
+		print(one_step, "\n")
+
 
 if transformation == '3': #Italian
 	print ("hahah")

@@ -1,0 +1,12 @@
+Scraping:
+	Made scraping tool to get :
+		Recipe Name
+		List of Ingredients
+		List of Directions
+
+Transformation:
+	Made various kinds of Transformations:
+		Make Vegetarian
+		Make Healthy
+		Any cuisine to Indian
+		Make Easy
