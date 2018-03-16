@@ -1,0 +1,117 @@
+abalone (dem-hips)
+alligator
+bacon
+badger (brightersides)
+bass (dem-hips)
+balut (nympheline)
+beef
+bison
+buffalo
+capon (clubfang)
+cat (dem-hips)
+chicken
+chicken breast
+chicken breasts
+chucker
+clams
+cod (dem-hips)
+conch (dem-hips)
+corned beef
+Cornish hen
+crab
+crawfish (dem-hips)
+cuttlefish (dem-hips)
+deviled meats
+dog (dem-hips)
+dove
+dried beef
+duck
+duckling
+eels
+elk
+fish
+foie gras (dem-hips)
+frankfurters
+frog legs
+gerbil (brightersides)
+goat
+goose
+grouse
+guinea fowl
+guinea pig
+gulls (nympheline)
+ham
+hamburger
+hamster (brightersides)
+hare
+herring (dem-hips)
+horsemeat
+jerky (nympheline)
+kangaroo (nympheline)
+kidney
+kippers (nympheline)
+lamb
+liver
+lobster
+monkey (brightersides)
+moose (aelabee)
+mussels
+mutton
+octopus (dem-hips)
+offal (blankmuse)
+opossum
+oysters
+partridge
+pea fowl
+pemmican
+periwinkle (nympheline)
+pheasant
+pigeon (nympheline)
+pork
+pork roll (dem-hips)
+prairie chicken
+prawns
+ptarmigan
+puffin
+quail
+rabbit
+raccoon
+rattlesnake meat
+reindeer
+rook (nympheline)
+salmon
+salted meats (brightersides)
+sardines (nympheline)
+sashimi (dem-hips)
+sausage
+scallops (nympheline)
+scrapple
+seal
+sharkmeat
+shrimp
+smoked meats
+snails
+snake (dem-hips)
+Spam (nympheline)
+sparrow (brightersides)
+squab
+squid
+squirrel
+swan
+sweetbreads
+terrapin
+tilapia (dem-hips)
+tendon (nympheline)
+tongue
+tripe
+trout (dem-hips)
+tuna (dem-hips)
+turkey
+turtle
+uni (sea urchin) (dem-hips)
+veal
+venison
+whelk (dem-hips)
+wild boar
+wild duck
+wild goose
