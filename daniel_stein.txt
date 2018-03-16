@@ -1,0 +1,1 @@
+I made the parser, as well as several of the text files, including tools, descriptors, measurements. For this I used a scraper.
