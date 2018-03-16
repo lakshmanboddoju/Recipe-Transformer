@@ -148,26 +148,29 @@ def transform_to_American(ingredients):
 		return ingredients
 
 
-transformation = input("What transformation would you like to perform? The options given are 'healthy', 'Indian', 'Italian', 'American' and 'vegetarian'.")
+def scrape_recipe_name(url):
+	webUrl = url
+	webFile = urllib.urlopen(webUrl)
+	webHtml = webFile.read()
+	soup = BeautifulSoup(webHtml,"html.parser")
+	webAll = soup.find("h1", {"class": "recipe-summary__h1"})
+	name = webAll.string
+	return name
 
-#url = input("Type in url from allrecipes.com.")
-url ="https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/"
-if transformation == 'healthy':
-	print(make_healthy(danparser.ingredient_info(url)))
 
-if transformation == 'Indian':
-	print(make_vegetarian(danparser.ingredient_info(url)))
+def make_easy(recipe_name):
+	#for every character
+	recipe_name.replace(" ", "%20")
 
-if transformation == '1':
-	print ("hahah")
-	print(transform_to_Italian(danparser.ingredient_info(url)))
+	full_url = "https://www.grubhub.com/search?orderMethod=delivery&locationMode=DELIVERY&facetSet=umamiV2&pageSize=20&hideHateos=true&searchMetrics=true&queryText="+recipe_name+"&latitude=41.87811279&longitude=-87.62979889&facet=open_now%3Atrue&variationId=default-impressionScoreBaseBuffed-20160317&sortSetId=umamiV2&sponsoredSize=2&countOmittingTimes=true"
+	#%20
+	return full_url
 
-if transformation == 'American':
-	print(transform_to_American(danparser.ingredient_info(url)))
+print (make_easy(scrape_recipe_name('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))
 
 #print(transform_to_American(danparser.ingredient_info('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))
 
 #print(transform_to_Italian(danparser.ingredient_info('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))
 ##
 
-#print(transform_to_Italian(danparser.ingredient_info('https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/')))
+#
