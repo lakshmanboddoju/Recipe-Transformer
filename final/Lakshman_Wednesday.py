@@ -70,7 +70,7 @@ def make_vegetarian(ingredients, directs):
         for meat_item in meat_list:
             if meat_item.lower() in ingredient._name.lower():
                 print (ingredient._name)
-                if meat_name not in replaced and meat_item not in meat_list_replaced:
+                if meat_item not in replaced and meat_item not in meat_list_replaced:
                     ingredient._name = 'Paneer'
                     ingredient._descriptor = 'n/a'
                     meat_list_replaced.append(ingredient._name)
