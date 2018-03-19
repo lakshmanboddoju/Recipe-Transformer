@@ -10,3 +10,5 @@ Transformation:
 		Make Healthy
 		Any cuisine to Indian
 		Make Easy
+
+Added the Diagramatic Representation
