@@ -161,7 +161,7 @@ def make_easy(recipe_name):
 	return full_url
 
 
-transformation = input("What transformation would you like to perform? The options given are \n 1.\t'healthy'\n 2.\t'Vegetarian'\n 3.\t'Italian'\n 4.\t'American'\n 5.\t'Indian'. or \n 6.\t'Make it Easy'\n\t")
+transformation = input("What transformation would you like to perform? The options given are \n 1.\t'healthy'\n 2.\t'Vegetarian'\n 3.\t'Italian'\n 4.\t'American'\n 5.\t'Indian'. \n 6.\t'Make Non-vegetarian' or \n 7.\t'Make it Easy'\n\t")
 
 
 
@@ -193,7 +193,10 @@ if transformation == '4': #american
 if transformation == '5': #Indian
 	print(Lakshman_Wednesday.make_indian(danparser.ingredient_info(url)))
 
-if transformation == '6': #Easy
+if transformation == '6': #Non-vegetarian
+	print(Lakshman_Wednesday.make_nonveg(danparser.ingredient_info(url)))
+
+if transformation == '7': #Easy
 	print("GOTO this link:\n\n\t", make_easy(scrape_recipe_name(url)))
 
 #print(transform_to_American(danparser.ingredient_info('https://www.allrecipes.com/recipe/9044/tomato-chicken-parmesan/?internalSource=streams&referringId=1985&referringContentType=recipe%20hub&clickId=st_trending_s')))

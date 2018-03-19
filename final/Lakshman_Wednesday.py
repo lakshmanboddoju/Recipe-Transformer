@@ -45,6 +45,9 @@ meat_to_veg_dict={"hamburger":"Veggie Burger", "beef broth":"vegetable broth", "
 meat_to_veg_directions_dict = {"beef": "soy", "chicken": "tofu", "steak": "portabello mushrooms", "turkey": "soy", "veal": "tofu", "chorizo": "tofu", "salmon": "tofu", 
                                "pork": "tofu", "pig": "tofu", "ham": "tofu"}
 
+
+
+
 def make_vegetarian(ingredients, directs):
     replaced = []
     replaced_to = []
@@ -97,6 +100,27 @@ def make_vegetarian(ingredients, directs):
 
     return ingredients, list(filter(None.__ne__, directs))
 
+
+inverse_map_veg_to_nonveg = {v: k for k, v in meat_to_veg_dict.items()}
+
+def make_nonveg(ingredients):
+    replaced = []
+    replaced_to = []
+
+    for ingredient in ingredients:
+        for non_meat_item in inverse_map_veg_to_nonveg.keys():
+            if non_meat_item.lower() in ingredient._name.lower():
+                if ingredient._name not in replaced:
+                    print ("\n\nReplacing:\t", ingredient._name)
+                    replaced.append(non_meat_item)
+                    ingredient._name = inverse_map_veg_to_nonveg[non_meat_item]
+                    ingredient._descriptor = 'n/a'
+                    replaced_to.append(ingredient._name)
+
+    print ("\nReplaced List:\t", replaced)
+    print ("\nReplaced to:\t", replaced_to)
+
+    return ingredients        
 #print(danparser.ingredient_info("https://www.allrecipes.com/recipe/8372/black-magic-cake/"))
 
 
